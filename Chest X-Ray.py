@@ -42,27 +42,26 @@ def Get_Kaze_features(image, vector_size=32):
 
 def Get_Hog_Features(image):
     try:
-        winSize = (64, 64)
-        blockSize = (16, 16)
-        blockStride = (8, 8)
-        cellSize = (8, 8)
-        nbins = 9
-        derivAperture = 1
-        winSigma = 4.
-        histogramNormType = 0
-        L2HysThreshold = 2.0000000000000001e-01
-        gammaCorrection = 0
-        nlevels = 64
-        hog = cv2.HOGDescriptor(winSize, blockSize, blockStride, cellSize, nbins, derivAperture, winSigma,
-                                histogramNormType, L2HysThreshold, gammaCorrection, nlevels)
-        # compute(img[, winStride[, padding[, locations]]]) -> descriptors
-        winStride = (8, 8)
-        padding = (8, 8)
-        locations = ((10, 20),)
-        dsc = hog.compute(image, winStride, padding, locations)
-        # Flatten all of them in one big vector - our feature vector
-        dsc = dsc.flatten()
-        return dsc
+        cell_size = (8, 8)  # h x w in pixels
+        block_size = (2, 2)  # h x w in cells
+        nbins = 9  # number of orientation bins
+
+        # winSize is the size of the image cropped to an multiple of the cell size
+        hog = cv2.HOGDescriptor(_winSize=(image.shape[1] // cell_size[1] * cell_size[1],
+                                          image.shape[0] // cell_size[0] * cell_size[0]),
+                                _blockSize=(block_size[1] * cell_size[1],
+                                            block_size[0] * cell_size[0]),
+                                _blockStride=(cell_size[1], cell_size[0]),
+                                _cellSize=(cell_size[1], cell_size[0]),
+                                _nbins=nbins)
+
+        n_cells = (image.shape[0] // cell_size[0], image.shape[1] // cell_size[1])
+        dsc = hog.compute(image) \
+            .reshape(n_cells[1] - block_size[1] + 1,
+                     n_cells[0] - block_size[0] + 1,
+                     block_size[0], block_size[1], nbins) \
+            .transpose((1, 0, 2, 3, 4))
+        return dsc.flatten()
     except cv2.error as e:
         print('Error: ' + e)
         return None
@@ -122,13 +121,13 @@ def ShowValidationImagesAndResults(model):
 
 
 if __name__ == "__main__":
-    #LoadData(training_data, trainDataDir, 'trainingDataUsingHog', 'HOG')
-    #LoadData(testing_data, testDataDir, 'testingDataUsingHog', 'HOG')
-    #LoadData(validate_data, validateDataDir, 'validateDataUsingKaze', 'KAZE')
+    LoadData(training_data, trainDataDir, 'trainingDataUsingHog', 'HOG')
+    LoadData(testing_data, testDataDir, 'testingDataUsingHog', 'HOG')
+    LoadData(validate_data, validateDataDir, 'validateDataUsingHog', 'HOG')
 
-    training_data = cpickle.load(open('trainingDataUsingKaze.pickle', 'rb'))
-    testing_data = cpickle.load(open('testingDataUsingKaze.pickle', 'rb'))
-    validate_data = cpickle.load(open('validateDataUsingKaze.pickle', 'rb'))
+    training_data = cpickle.load(open('trainingDataUsingHog.pickle', 'rb'))
+    testing_data = cpickle.load(open('testingDataUsingHog.pickle', 'rb'))
+    validate_data = cpickle.load(open('validateDataUsingHog.pickle', 'rb'))
     x_Train = list(td[0] for td in training_data.values())
     y_Train = list(td[1] for td in training_data.values())
     x_Test = list(td[0] for td in testing_data.values())
