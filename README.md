@@ -57,6 +57,6 @@ Models compared using:
   - Precision score of testing set.
 
 
-For more information check the notebook.
+For more information check the [notebook](https://nbviewer.jupyter.org/github/teoad95/Chest-Xray-prediction/blob/main/MainNotebook.ipynb).
 
 
