@@ -37,9 +37,7 @@ Currently implemented 3 different types of feature extraction.
 - KAZE features
 - HOG features
 
-For more information check the notebook.
-
-[`view notebook`](https://nbviewer.jupyter.org/github/teoad95/Chest-Xray-prediction/blob/main/ExtractFeatures.ipynb)
+For more information check the [notebook](https://nbviewer.jupyter.org/github/teoad95/Chest-Xray-prediction/blob/main/ExtractFeatures.ipynb).
 
 #### MainNotebook
 
