@@ -59,4 +59,8 @@ Models compared using:
 
 For more information check the [notebook](https://nbviewer.jupyter.org/github/teoad95/Chest-Xray-prediction/blob/main/MainNotebook.ipynb).
 
+#### CompareImageKeypoints
 
+Compares keypoints of two images, its only about to help the reader understand what keypoints are.
+
+For more information check the [notebook](https://nbviewer.jupyter.org/github/teoad95/Chest-Xray-prediction/blob/main/CompareImageKeypoints.ipynb).
