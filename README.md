@@ -39,6 +39,8 @@ Currently implemented 3 different types of feature extraction.
 
 For more information check the notebook.
 
+[`view notebook`](https://nbviewer.jupyter.org/github/bojito/ml-album-popularity/blob/main/4%20-%20Extract%20Features.ipynb)
+
 #### MainNotebook
 
 Contains models training, evaluation and tuning.
@@ -58,3 +60,5 @@ Models compared using:
 
 
 For more information check the notebook.
+
+
