@@ -39,7 +39,7 @@ Currently implemented 3 different types of feature extraction.
 
 For more information check the notebook.
 
-[`view notebook`](https://nbviewer.jupyter.org/github/bojito/ml-album-popularity/blob/main/4%20-%20Extract%20Features.ipynb)
+[`view notebook`](https://nbviewer.jupyter.org/github/teoad95/Chest-Xray-prediction/blob/main/ExtractFeatures.ipynb)
 
 #### MainNotebook
 
