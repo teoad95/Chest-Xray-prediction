@@ -52,7 +52,7 @@ The following models used:
 
 Models compared using:
 
-  - Their accuracy on validation set.
+  - Their accuracy on testing and validation set.
   - Confusion matrix of testing set.
   - Precision score of testing set.
 
